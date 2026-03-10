@@ -1,0 +1,55 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+.yarn/install-state.gz
+
+# testing and reports
+/coverage
+
+# Next.js build output
+/.next/
+/out/
+/build
+
+# local environment files
+.env*
+!.env.example
+
+# logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# caches and generated state
+*.tsbuildinfo
+.eslintcache
+.cache/
+.turbo/
+next-env.d.ts
+
+# local runtime artifacts
+*.pid
+*.pid.lock
+tmp/
+temp/
+
+# deployment platforms
+.vercel
+
+# editor and OS files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# sensitive key material
+*.pem
+
+
+.DS_Store

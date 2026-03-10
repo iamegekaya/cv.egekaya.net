@@ -1,0 +1,128 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem;
+  background-color: #0a0a0a;
+  color: #ffffff;
+}
+
+.contentWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.title {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  font-weight: 500;
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+.cards {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 900px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 160px;
+  height: 160px;
+  border-radius: 24px;
+  text-decoration: none;
+  color: white;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  z-index: 2;
+}
+
+.logoImage {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
+
+.label {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* PDF Card Styles */
+.pdfCard:hover {
+  box-shadow: 0 0 30px rgba(239, 68, 68, 0.3);
+  border-color: rgba(239, 68, 68, 0.5);
+}
+
+/* Word Card Styles */
+.wordCard:hover {
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+  border-color: rgba(59, 130, 246, 0.5);
+}
+
+@media (max-width: 768px) {
+  .cards {
+    gap: 1rem;
+  }
+  
+  .card {
+    width: 140px;
+    height: 140px;
+  }
+
+  .logoImage {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cards {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .title {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.footer {
+  width: 100%;
+  text-align: center;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.5);
+  padding-top: 1rem;
+}

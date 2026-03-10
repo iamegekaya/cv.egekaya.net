@@ -1,0 +1,55 @@
+import type { Metadata } from "next";
+import { cookies } from "next/headers";
+import "./globals.css";
+import { LanguageProvider } from "./context/LanguageContext";
+import Header from "./components/Header";
+import {
+  dictionaries,
+  LANGUAGE_COOKIE_NAME,
+  resolveLanguage,
+} from "./i18n";
+
+async function getRequestLanguage() {
+  const cookieStore = await cookies();
+  const languageCookie = cookieStore.get(LANGUAGE_COOKIE_NAME)?.value;
+
+  return {
+    hasLanguageCookie: languageCookie !== undefined,
+    language: resolveLanguage(languageCookie),
+  };
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const { language } = await getRequestLanguage();
+  const dictionary = dictionaries[language];
+
+  return {
+    title: dictionary.metaTitle,
+    description: dictionary.metaDescription,
+    icons: {
+      icon: "/icon.svg",
+    },
+  };
+}
+
+export default async function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  const { hasLanguageCookie, language } = await getRequestLanguage();
+
+  return (
+    <html lang={language}>
+      <body>
+        <LanguageProvider
+          initialLanguage={language}
+          hasLanguageCookie={hasLanguageCookie}
+        >
+          <Header />
+          {children}
+        </LanguageProvider>
+      </body>
+    </html>
+  );
+}
