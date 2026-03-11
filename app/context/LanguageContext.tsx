@@ -11,7 +11,7 @@ import {
 
 interface LanguageContextType {
     language: Language;
-    toggleLanguage: () => void;
+    setLanguage: (language: Language) => void;
     t: (key: TranslationKey) => string;
 }
 
@@ -26,43 +26,47 @@ export const LanguageProvider = ({
     initialLanguage: Language;
     hasLanguageCookie: boolean;
 }) => {
-    const [language, setLanguage] = useState<Language>(initialLanguage);
+    const [language, setLanguageState] = useState<Language>(initialLanguage);
+    const [isLanguageReady, setIsLanguageReady] = useState(hasLanguageCookie);
 
-    const toggleLanguage = () => {
-        setLanguage((prev) => {
-            return prev === "tr" ? "en" : "tr";
-        });
+    const setLanguage = (nextLanguage: Language) => {
+        setLanguageState(nextLanguage);
     };
 
     useEffect(() => {
+        if (hasLanguageCookie) {
+            return;
+        }
+
         const savedLanguage = localStorage.getItem(LANGUAGE_COOKIE_NAME);
 
-        if (!hasLanguageCookie && isLanguage(savedLanguage) && savedLanguage !== language) {
-            const animationFrame = window.requestAnimationFrame(() => {
-                setLanguage(savedLanguage);
-            });
+        if (isLanguage(savedLanguage)) {
+            setLanguageState(savedLanguage);
+        }
+        setIsLanguageReady(true);
+    }, [hasLanguageCookie]);
 
-            return () => {
-                window.cancelAnimationFrame(animationFrame);
-            };
+    useEffect(() => {
+        if (!isLanguageReady) {
+            return;
         }
 
         const dictionary = dictionaries[language];
         const descriptionElement = document.querySelector('meta[name="description"]');
 
         localStorage.setItem(LANGUAGE_COOKIE_NAME, language);
-        document.cookie = `${LANGUAGE_COOKIE_NAME}=${language}; path=/; max-age=31536000; samesite=lax`;
+        document.cookie = `${LANGUAGE_COOKIE_NAME}=${language}; Path=/; Max-Age=31536000; SameSite=Lax`;
         document.documentElement.lang = language;
         document.title = dictionary.metaTitle;
         descriptionElement?.setAttribute("content", dictionary.metaDescription);
-    }, [hasLanguageCookie, language]);
+    }, [isLanguageReady, language]);
 
     const t = (key: TranslationKey) => {
         return dictionaries[language][key];
     };
 
     return (
-        <LanguageContext.Provider value={{ language, toggleLanguage, t }}>
+        <LanguageContext.Provider value={{ language, setLanguage, t }}>
             {children}
         </LanguageContext.Provider>
     );

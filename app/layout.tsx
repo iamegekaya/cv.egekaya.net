@@ -8,6 +8,11 @@ import {
   LANGUAGE_COOKIE_NAME,
   resolveLanguage,
 } from "./i18n";
+import { Inter } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const inter = Inter({subsets:['latin'],variable:'--font-sans'});
+
 
 async function getRequestLanguage() {
   const cookieStore = await cookies();
@@ -40,7 +45,7 @@ export default async function RootLayout({
   const { hasLanguageCookie, language } = await getRequestLanguage();
 
   return (
-    <html lang={language}>
+    <html lang={language} className={cn("font-sans", inter.variable)}>
       <body>
         <LanguageProvider
           initialLanguage={language}

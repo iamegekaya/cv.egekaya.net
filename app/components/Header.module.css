@@ -11,43 +11,51 @@
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
-  justify-content: flex-end; /* Align button to the right */
+  justify-content: center;
   align-items: center;
+}
+
+.languageSwitcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(5px);
 }
 
 .languageButton {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 20px;
-  padding: 0.5rem 1rem;
-  color: #fff;
+  background: transparent;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+  color: rgba(255, 255, 255, 0.72);
   font-size: 0.9rem;
   cursor: pointer;
-  transition: all 0.2s ease;
-  backdrop-filter: blur(5px);
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: center;
   font-weight: 500;
+  min-width: 6.5rem;
 }
 
 .languageButton:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
   transform: translateY(-1px);
 }
 
-.separator {
-  opacity: 0.5;
-}
-
 .active {
-  color: #fff;
+  background: #ffffff;
+  color: #0a0a0a;
   font-weight: 700;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
-.languageButton span:not(.active):not(.separator) {
-  opacity: 0.6;
+.languageButton:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.65);
+  outline-offset: 2px;
 }
 
 .srOnly {

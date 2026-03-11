@@ -5,39 +5,37 @@ import { useLanguage } from "../context/LanguageContext";
 import styles from "./Header.module.css";
 
 const Header = () => {
-    const { language, toggleLanguage, t } = useLanguage();
-    const toggleLabelKey = language === "tr" ? "switchToEnglish" : "switchToTurkish";
-    const currentLanguageLabelKey = language === "tr" ? "currentLanguageTr" : "currentLanguageEn";
+    const { language, setLanguage, t } = useLanguage();
 
     return (
         <header className={styles.header}>
             <div className={styles.container}>
-                <button
-                    type="button"
-                    onClick={toggleLanguage}
-                    className={styles.languageButton}
-                    aria-label={t(toggleLabelKey)}
-                    title={t(toggleLabelKey)}
+                <div
+                    className={styles.languageSwitcher}
+                    role="group"
+                    aria-label={t("languageSwitcherLabel")}
                 >
-                    <span
-                        aria-hidden="true"
-                        lang="tr"
-                        className={language === "tr" ? styles.active : ""}
+                    <button
+                        type="button"
+                        onClick={() => setLanguage("tr")}
+                        className={`${styles.languageButton} ${language === "tr" ? styles.active : ""}`}
+                        aria-pressed={language === "tr"}
+                        title={t("switchToTurkish")}
                     >
-                        TR
-                    </span>
-                    <span aria-hidden="true" className={styles.separator}>|</span>
-                    <span
-                        aria-hidden="true"
-                        lang="en"
-                        className={language === "en" ? styles.active : ""}
+                        {t("languageOptionTurkish")}
+                        <span className={styles.srOnly}>{t("currentLanguageTr")}</span>
+                    </button>
+                    <button
+                        type="button"
+                        onClick={() => setLanguage("en")}
+                        className={`${styles.languageButton} ${language === "en" ? styles.active : ""}`}
+                        aria-pressed={language === "en"}
+                        title={t("switchToEnglish")}
                     >
-                        EN
-                    </span>
-                    <span className={styles.srOnly}>
-                        {t(currentLanguageLabelKey)} {t(toggleLabelKey)}.
-                    </span>
-                </button>
+                        {t("languageOptionEnglish")}
+                        <span className={styles.srOnly}>{t("currentLanguageEn")}</span>
+                    </button>
+                </div>
             </div>
         </header>
     );
