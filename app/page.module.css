@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 2rem;
-  background-color: #0a0a0a;
+  background: transparent;
   color: #ffffff;
 }
 
@@ -24,6 +24,7 @@
   align-items: center;
   gap: 1rem;
   margin-bottom: 3rem;
+  width: 100%;
 }
 
 .eyebrow {
@@ -53,11 +54,20 @@
   line-height: 1.25;
 }
 
+.titleShine {
+  display: inline-block;
+}
+
 .description {
   max-width: 460px;
   text-align: center;
   color: rgba(255, 255, 255, 0.72);
   line-height: 1.6;
+}
+
+.descriptionText {
+  display: inline-block;
+  min-height: 3.2rem;
 }
 
 .cards {
@@ -155,6 +165,18 @@
 }
 
 @media (max-width: 480px) {
+  .container {
+    padding: 5.5rem 1.25rem 1.5rem;
+  }
+
+  .contentWrapper {
+    justify-content: flex-start;
+  }
+
+  .hero {
+    margin-bottom: 2rem;
+  }
+
   .cards {
     flex-direction: column;
     width: 100%;
@@ -172,6 +194,24 @@
   .languageBadge {
     width: 100%;
     justify-content: center;
+  }
+
+  .eyebrow {
+    font-size: 0.78rem;
+  }
+}
+
+@media (max-height: 760px) {
+  .container {
+    padding-top: 5.5rem;
+  }
+
+  .contentWrapper {
+    justify-content: flex-start;
+  }
+
+  .hero {
+    margin-bottom: 2rem;
   }
 }
 

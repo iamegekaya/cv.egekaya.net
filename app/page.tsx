@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import ShinyText from "@/components/ShinyText";
+import TextType from "@/components/TextType";
 import styles from "./page.module.css";
 import { useLanguage } from "./context/LanguageContext";
 
@@ -49,8 +51,29 @@ export default function Home() {
           <div className={styles.languageBadge}>
             <span>{t("languageName")}</span>
           </div>
-          <h1 className={styles.title}>{t("title")}</h1>
-          <p className={styles.description}>{t("description")}</p>
+          <h1 className={styles.title}>
+            <ShinyText
+              text={t("title")}
+              className={styles.titleShine}
+              speed={3.8}
+              color="rgba(255, 255, 255, 0.78)"
+              shineColor="#ffffff"
+              spread={135}
+            />
+          </h1>
+          <p className={styles.description}>
+            <TextType
+              key={`${language}-description`}
+              as="span"
+              text={t("description")}
+              className={styles.descriptionText}
+              typingSpeed={36}
+              initialDelay={120}
+              pauseDuration={1200}
+              loop={false}
+              showCursor={false}
+            />
+          </p>
         </div>
 
         <div className={styles.cards}>
@@ -71,8 +94,22 @@ export default function Home() {
                   className={styles.logoImage}
                 />
                 <div className={styles.cardText}>
-                  <span className={styles.cardTitle}>{document.format}</span>
-                  <span className={styles.cardSubtitle}>{t("downloadNow")}</span>
+                  <ShinyText
+                    text={document.format}
+                    className={styles.cardTitle}
+                    speed={3.2}
+                    color="rgba(255, 255, 255, 0.78)"
+                    shineColor="#ffffff"
+                    spread={125}
+                  />
+                  <ShinyText
+                    text={t("downloadNow")}
+                    className={styles.cardSubtitle}
+                    speed={2.6}
+                    color="rgba(255, 255, 255, 0.58)"
+                    shineColor="rgba(255, 255, 255, 0.94)"
+                    spread={110}
+                  />
                 </div>
               </div>
             </a>

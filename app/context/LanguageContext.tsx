@@ -39,11 +39,16 @@ export const LanguageProvider = ({
         }
 
         const savedLanguage = localStorage.getItem(LANGUAGE_COOKIE_NAME);
+        const animationFrame = window.requestAnimationFrame(() => {
+            if (isLanguage(savedLanguage)) {
+                setLanguageState(savedLanguage);
+            }
+            setIsLanguageReady(true);
+        });
 
-        if (isLanguage(savedLanguage)) {
-            setLanguageState(savedLanguage);
-        }
-        setIsLanguageReady(true);
+        return () => {
+            window.cancelAnimationFrame(animationFrame);
+        };
     }, [hasLanguageCookie]);
 
     useEffect(() => {

@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 import "./globals.css";
 import { LanguageProvider } from "./context/LanguageContext";
 import Header from "./components/Header";
+import SiteBackground from "./components/SiteBackground";
 import {
   dictionaries,
   LANGUAGE_COOKIE_NAME,
@@ -46,13 +47,16 @@ export default async function RootLayout({
 
   return (
     <html lang={language} className={cn("font-sans", inter.variable)}>
-      <body>
+      <body className="relative isolate min-h-screen text-white">
+        <SiteBackground />
         <LanguageProvider
           initialLanguage={language}
           hasLanguageCookie={hasLanguageCookie}
         >
-          <Header />
-          {children}
+          <div className="relative z-10">
+            <Header />
+            {children}
+          </div>
         </LanguageProvider>
       </body>
     </html>
