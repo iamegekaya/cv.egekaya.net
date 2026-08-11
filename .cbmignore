@@ -1,0 +1,42 @@
+# Version control, dependencies, caches, and generated output
+.git/
+node_modules/
+.next/
+dist/
+out/
+coverage/
+.cache/
+.turbo/
+*.tsbuildinfo
+
+# Secrets, credentials, certificates, and private runtime state
+.env
+.env.*
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+*.db
+*.sqlite
+*.sqlite3
+*.dump
+*.sql
+.vercel/
+
+# Personal CV documents and binary/profile media
+public/cv/
+*.pdf
+*.doc
+*.docx
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.avif
+*.ico
+*.mp4
+*.mov
+*.mp3
+*.wav

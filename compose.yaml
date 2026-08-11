@@ -1,0 +1,8 @@
+services:
+  cv-site:
+    build:
+      context: .
+    container_name: cv-site
+    restart: unless-stopped
+    ports:
+      - "3001:3001"

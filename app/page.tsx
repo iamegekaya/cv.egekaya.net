@@ -46,74 +46,72 @@ export default function Home() {
   return (
     <main className={styles.container}>
       <div className={styles.contentWrapper}>
-        <div className={styles.hero}>
-          <p className={styles.eyebrow}>{t("selectedLanguage")}</p>
-          <div className={styles.languageBadge}>
-            <span>{t("languageName")}</span>
+        <div className={styles.centerBlock}>
+          <div className={styles.hero}>
+            <h1 className={styles.title}>
+              <ShinyText
+                text={t("title")}
+                className={styles.titleShine}
+                speed={3.8}
+                color="rgba(255, 255, 255, 0.78)"
+                shineColor="#ffffff"
+                spread={135}
+              />
+            </h1>
+            <p className={styles.description}>
+              <TextType
+                key={`${language}-description`}
+                as="span"
+                text={t("description")}
+                className={styles.descriptionText}
+                typingSpeed={36}
+                initialDelay={120}
+                pauseDuration={1200}
+                loop={false}
+                showCursor={false}
+              />
+            </p>
           </div>
-          <h1 className={styles.title}>
-            <ShinyText
-              text={t("title")}
-              className={styles.titleShine}
-              speed={3.8}
-              color="rgba(255, 255, 255, 0.78)"
-              shineColor="#ffffff"
-              spread={135}
-            />
-          </h1>
-          <p className={styles.description}>
-            <TextType
-              key={`${language}-description`}
-              as="span"
-              text={t("description")}
-              className={styles.descriptionText}
-              typingSpeed={36}
-              initialDelay={120}
-              pauseDuration={1200}
-              loop={false}
-              showCursor={false}
-            />
-          </p>
-        </div>
 
-        <div className={styles.cards}>
-          {documents.map((document) => (
-            <a
-              key={document.href}
-              href={document.href}
-              download
-              className={`${styles.card} ${document.format === "PDF" ? styles.pdfCard : styles.wordCard}`}
-              aria-label={document.ariaLabel}
-            >
-              <div className={styles.cardContent}>
-                <Image
-                  src={document.iconSrc}
-                  alt={document.iconAlt}
-                  width={64}
-                  height={64}
-                  className={styles.logoImage}
-                />
-                <div className={styles.cardText}>
-                  <ShinyText
-                    text={document.format}
-                    className={styles.cardTitle}
-                    speed={3.2}
-                    color="rgba(255, 255, 255, 0.78)"
-                    shineColor="#ffffff"
-                    spread={125}
+          <div className={styles.cards}>
+            {documents.map((document) => (
+              <a
+                key={document.href}
+                href={document.href}
+                download
+                className={`${styles.card} ${document.format === "PDF" ? styles.pdfCard : styles.wordCard}`}
+                aria-label={document.ariaLabel}
+              >
+                <div className={styles.cardContent}>
+                  <Image
+                    src={document.iconSrc}
+                    alt={document.iconAlt}
+                    width={64}
+                    height={64}
+                    className={styles.logoImage}
                   />
-                  <ShinyText
-                    text={t("downloadNow")}
-                    className={styles.cardSubtitle}
-                    speed={2.6}
-                    color="rgba(255, 255, 255, 0.58)"
-                    shineColor="rgba(255, 255, 255, 0.94)"
-                    spread={110}
-                  />
+                  <div className={styles.cardText}>
+                    <ShinyText
+                      text={document.format}
+                      className={styles.cardTitle}
+                      speed={3.2}
+                      color="rgba(255, 255, 255, 0.78)"
+                      shineColor="#ffffff"
+                      spread={125}
+                    />
+                    <ShinyText
+                      text={t("downloadNow")}
+                      className={styles.cardSubtitle}
+                      speed={2.6}
+                      color="rgba(255, 255, 255, 0.58)"
+                      shineColor="rgba(255, 255, 255, 0.94)"
+                      spread={110}
+                    />
+                  </div>
                 </div>
-              </div>
-            </a>
-          ))}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
 
